@@ -62,7 +62,8 @@ src/
 ├── services/
 │   └── userApi.js             # Centralized Axios instance + all API call functions
 ├── utils/
-│   └── validators.js          # Pure react-hook-form validation rule objects
+│   ├── validators.js          # Pure react-hook-form validation rule objects
+│   └── formatPhone.js         # Phone number display formatter (x56442 → ext. 56442)
 ├── App.jsx
 ├── index.css                  # Tailwind import + global animations/skeleton
 └── main.jsx

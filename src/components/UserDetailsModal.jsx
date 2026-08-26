@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { useUserPosts } from '../hooks/useUserPosts';
 import LoadingSpinner from './LoadingSpinner';
+import { formatPhone } from '../utils/formatPhone';
 
 function DetailRow({ icon: Icon, label, value }) {
   if (!value) return null;
@@ -113,7 +114,7 @@ export default function UserDetailsModal({ user, onClose, onEdit }) {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <DetailRow icon={Mail} label="Email" value={user.email} />
-              <DetailRow icon={Phone} label="Phone" value={user.phone} />
+              <DetailRow icon={Phone} label="Phone" value={formatPhone(user.phone)} />
               <DetailRow icon={Globe} label="Website" value={user.website} />
               <DetailRow icon={MapPin} label="Address" value={address} />
             </div>
@@ -163,10 +164,15 @@ export default function UserDetailsModal({ user, onClose, onEdit }) {
             )}
 
             {!postsLoading && !postsError && posts.length > 0 && (
-              <div className="space-y-3 max-h-72 overflow-y-auto pr-1">
-                {posts.map((post) => (
-                  <PostItem key={post.id} post={post} />
-                ))}
+              <div className="relative">
+                <div className="space-y-3 max-h-72 overflow-y-auto pr-1 pb-2">
+                  {posts.map((post) => (
+                    <PostItem key={post.id} post={post} />
+                  ))}
+                </div>
+                {/* Fade gradient to signal more content below */}
+                <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8
+                                bg-gradient-to-t from-white to-transparent rounded-b-xl" />
               </div>
             )}
           </section>

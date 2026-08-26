@@ -1,4 +1,5 @@
-import { Mail, Phone, Globe, Building2, Pencil, Trash2 } from 'lucide-react';
+import { Mail, Phone, Globe, Building2, Pencil, Trash2, Eye } from 'lucide-react';
+import { formatPhone } from '../utils/formatPhone';
 
 function Avatar({ name }) {
   const initials = name
@@ -58,20 +59,25 @@ export default function UserCard({ user, onView, onEdit, onDelete }) {
 
       {/* Info rows */}
       <div className="space-y-2 flex-1">
-        <InfoRow icon={Mail} label="Email" value={user.email} />
-        <InfoRow icon={Phone} label="Phone" value={user.phone} />
-        <InfoRow icon={Globe} label="Website" value={user.website} />
+        <InfoRow icon={Mail}     label="Email"   value={user.email} />
+        <InfoRow icon={Phone}    label="Phone"   value={formatPhone(user.phone)} />
+        <InfoRow icon={Globe}    label="Website" value={user.website} />
         <InfoRow icon={Building2} label="Company" value={user.company?.name} />
       </div>
 
       {/* Actions */}
       <div className="flex items-center justify-between pt-3 border-t border-gray-100">
+        {/* "View details" styled as a ghost button to match icon actions visually */}
         <button
           onClick={() => onView(user)}
-          className="text-xs font-medium text-blue-600 hover:text-blue-700 hover:underline transition-colors"
+          className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-slate-600
+                     border border-gray-200 rounded-lg hover:border-blue-300 hover:text-blue-600
+                     hover:bg-blue-50 transition-colors"
         >
+          <Eye size={13} />
           View details
         </button>
+
         <div className="flex gap-1">
           <button
             onClick={() => onEdit(user)}
