@@ -1,7 +1,8 @@
 /**
- * Formats a raw phone string from the API into a readable display value.
- * Converts the JSONPlaceholder extension format:
- *   "1-770-736-8031 x56442"  →  "1-770-736-8031 (ext. 56442)"
+ * Formats a raw phone string into a clean, consistent display value.
+ * Converts any extension pattern:
+ *   "1-770-736-8031 x56442"        →  "1-770-736-8031 (ext. 56442)"
+ *   "1-770-736-8031 {ext. 56442}"  →  "1-770-736-8031 (ext. 56442)"
  *
  * Any phone string without an extension is returned unchanged.
  *
@@ -10,6 +11,6 @@
  */
 export function formatPhone(phone) {
   if (!phone) return phone;
-  // Match trailing ` x<digits>` or ` ext<digits>` (case-insensitive)
-  return phone.replace(/\s+x(\d+)$/i, ' (ext. $1)').trim();
+  // Replace trailing extension (e.g. x56442, ext 56442, {ext. 56442}, (ext. 56442)) with (ext. 56442)
+  return phone.replace(/\s*[\{\(]?(?:x|ext\.?)\s*(\d+)[\}\)]?/gi, ' (ext. $1)').trim();
 }
