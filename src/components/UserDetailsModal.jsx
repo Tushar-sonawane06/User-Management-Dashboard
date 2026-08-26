@@ -62,9 +62,9 @@ export default function UserDetailsModal({ user, onClose, onEdit }) {
       aria-modal="true"
       aria-labelledby="detail-title"
     >
-      {/* Separate clickable backdrop */}
+      {/* Backdrop — fixed to viewport so it never scrolls away */}
       <div
-        className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+        className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm"
         onClick={onClose}
         aria-hidden="true"
       />
