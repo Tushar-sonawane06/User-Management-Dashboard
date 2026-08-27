@@ -2,6 +2,9 @@
 
 A **production-quality React.js User Management Dashboard** that consumes the public [JSONPlaceholder REST API](https://jsonplaceholder.typicode.com). Built as a full-stack internship technical assessment demonstrating clean React architecture, proper state management, and a professional white corporate UI.
 
+**Live demo:** https://user-management-dashboard-cyan-three.vercel.app/
+**Repository:** https://github.com/Tushar-sonawane06/User-Management-Dashboard
+
 ---
 
 ## ✨ Features
@@ -63,7 +66,7 @@ src/
 │   └── userApi.js             # Centralized Axios instance + all API call functions
 ├── utils/
 │   ├── validators.js          # Pure react-hook-form validation rule objects
-│   └── formatPhone.js         # Phone number display formatter (x56442 → ext. 56442)
+│   └── formatPhone.js         # Phone number display formatter
 ├── App.jsx
 ├── index.css                  # Tailwind import + global animations/skeleton
 └── main.jsx
@@ -132,7 +135,7 @@ All data is sourced from the public [JSONPlaceholder](https://jsonplaceholder.ty
 
 3. **No authentication.** The app is a single-page dashboard with no login flow — all users are public.
 
-4. **Phone number format.** JSONPlaceholder user data includes phone extensions in the format `1-770-736-8031 x56442`. The phone field validator accepts this format.
+4. **Phone number formatting.** JSONPlaceholder returns phone extensions in the raw format `1-770-736-8031 x56442`. The app reformats this for display (e.g. as `1-770-736-8031 (ext. 56442)`); a small cosmetic inconsistency in the bracket style may appear for some entries. This is display-only and does not affect data accuracy or any functionality.
 
 5. **Company data on newly created users.** The JSONPlaceholder API echoes back minimal company data. The app maps the `Company Name` form field to `user.company.name` consistently across the list, cards, and modals.
 
